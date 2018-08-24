@@ -1,0 +1,11 @@
+CREATE TABLE `shares_price` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL COMMENT '股票代码',
+  `price` double(20,5) DEFAULT NULL COMMENT '价格',
+  `buy_or_sell` int(1) DEFAULT NULL COMMENT '0 买入  1 卖出',
+  `number` int(11) DEFAULT NULL COMMENT '数量',
+  `time` datetime DEFAULT NULL COMMENT '时间',
+  PRIMARY KEY (`id`),
+  KEY `code_index` (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+SET FOREIGN_KEY_CHECKS=1;

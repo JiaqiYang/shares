@@ -1,0 +1,13 @@
+CREATE TABLE `shares_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL COMMENT '股票代码',
+  `name` varchar(255) NOT NULL COMMENT '名称',
+  `shares_total` double(20,5) DEFAULT NULL COMMENT '总额',
+  `transaction_total` double(20,5) DEFAULT NULL COMMENT '交易总量',
+  `creation_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code_index` (`code`) USING BTREE,
+  KEY `name_index` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+SET FOREIGN_KEY_CHECKS=1;
