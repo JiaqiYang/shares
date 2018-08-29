@@ -1,0 +1,20 @@
+CREATE TABLE `amap_shop` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_id` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '名称',
+  `cityname` varchar(255) DEFAULT NULL COMMENT '城市',
+  `address` varchar(255) DEFAULT NULL COMMENT '地址',
+  `areacode` varchar(255) DEFAULT NULL COMMENT '区号',
+  `tel` varchar(255) DEFAULT NULL COMMENT '电话',
+  `per_capita_consumption` double(11,3) DEFAULT NULL COMMENT '人均消费',
+  `longitude` double(20,8) DEFAULT NULL COMMENT '经度',
+  `latitude` double(20,8) DEFAULT NULL COMMENT '纬度',
+  `rating` double(11,3) DEFAULT NULL COMMENT '评价',
+  `characteristic` varchar(255) DEFAULT NULL COMMENT '特色',
+  `type` varchar(255) DEFAULT NULL COMMENT '类型',
+  `keyword` varchar(255) DEFAULT NULL COMMENT '关键字',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `a_id_index` (`a_id`) USING BTREE,
+  KEY `type_index` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=2486 DEFAULT CHARSET=utf8;
+SET FOREIGN_KEY_CHECKS=1;

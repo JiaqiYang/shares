@@ -54,6 +54,8 @@
         <!--</table>-->
 
 
-        <table tableName="shares_price" domainObjectName="SharesPrice"></table>
+        <!--<table tableName="shares_price" domainObjectName="SharesPrice"></table>-->
+        <table tableName="amap_shop" domainObjectName="AmapShop"></table>
+        <table tableName="amap_city" domainObjectName="AmapCity"></table>
     </context>
 </generatorConfiguration>

@@ -3,11 +3,11 @@ package com.yjq.shares.util;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
+import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -31,6 +31,13 @@ public class HttpClientPartner {
     private CloseableHttpClient client;
 
     public HttpClientPartner() {
+        init();
+    }
+
+    public HttpClientPartner(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
+        this.type = "http";
         init();
     }
 
@@ -64,8 +71,13 @@ public class HttpClientPartner {
     public String post(String url, List<BasicNameValuePair> list, String code) throws Exception {
         HttpPost httpPost = new HttpPost(url);
         // 配置超时时间
-        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(1000).setConnectionRequestTimeout(1000)
-                .setSocketTimeout(1000).setRedirectsEnabled(true).build();
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(1000)
+                .setConnectionRequestTimeout(1000)
+                .setSocketTimeout(1000)
+                .setCookieSpec(CookieSpecs.STANDARD)
+                .setRedirectsEnabled(false)
+                .build();
         httpPost.setConfig(requestConfig);
 
         // 设置post求情参数
@@ -93,7 +105,9 @@ public class HttpClientPartner {
         // 配置超时时间
         RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000) // 设置连接超时时间
                 .setConnectionRequestTimeout(5000) // 设置请求超时时间
-                .setSocketTimeout(5000).setRedirectsEnabled(true)// 默认允许自动重定向
+                .setSocketTimeout(5000)
+                .setCookieSpec(CookieSpecs.STANDARD)
+                .setRedirectsEnabled(false)// 默认允许自动重定向
                 .build();
         httpGet.setConfig(requestConfig);
         httpGet.setHeader("User-Agent",USER_AGENT);

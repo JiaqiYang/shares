@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html  lang="en" style="height: 100%; width: 100%;" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>高德数据</title>
+</head>
+<body style="height: 100%; width: 100%;text-align: center;">
+    <div style="width: 100%;">
+        <form action="/queryShops" method="post" >
+            经度：<input name="longitude" type="text">
+            纬度：<input name="latitude" type="text">
+            范围：
+            <select name="range">
+                <option value="10000">10000米内</option>
+                <option value="5000" selected>5000米内</option>
+                <option value="4000">4000米内</option>
+                <option value="3000">3000米内</option>
+                <option value="2000">2000米内</option>
+                <option value="1000">1000米内</option>
+            </select>
+
+            城市：
+            <select name="city">
+                <option value="110000">北京</option>
+                <option value="310000">上海</option>
+                <option value="640100" selected>银川</option>
+            </select>
+
+            关键字：<input name="keywords" type="text">
+
+            <input type="submit" value="查询">
+        </form>
+
+        <table border="1" style="text-align: center; width: 98%;">
+            <tbody>
+            <tr>
+                <th style="width: 16%;">序号</th>
+                <th style="width: 16%;">名称</th>
+                <th style="width: 16%;">地址</th>
+                <th style="width: 16%;">电话</th>
+                <th style="width: 16%;">距离</th>
+                <th style="width: 16%;">人均消费</th>
+            </tr>
+            <tr th:each="shop:${shopList}">
+                <td th:text="${shop.getId()}"></td>
+                <td th:text="${shop.getName()}"></td>
+                <td th:text="${shop.getAddress()}"></td>
+                <td th:text="${shop.getTel()}"></td>
+                <td>5km</td>
+                <td th:text="${shop.getPerCapitaConsumption()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
